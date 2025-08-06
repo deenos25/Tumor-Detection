@@ -9,7 +9,7 @@ class TumorImageProcessing:
         self.class_labels = class_labels
         self.max_tumors = max_tumors
 
-    def resize_and_normalize(self):
+    def resize_and_normalize_image(self):
         image_resized = cv2.resize(self.image, (512, 512))
         image_resized_normalized = (image_resized - image_resized.min()) / (image_resized.max() - image_resized.min())
         return image_resized_normalized
