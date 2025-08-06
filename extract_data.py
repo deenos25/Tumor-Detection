@@ -72,4 +72,4 @@ class BrainTumorDataLoader:
 
 path = kagglehub.dataset_download("ahmedsorour1/mri-for-brain-tumor-with-bounding-boxes")
 data_loader = BrainTumorDataLoader(path)
-data_loader.save_data("C:\\Users\\deeno\\.cache\\processed_image_data.pkl.gz")
+#data_loader.save_data("processed_image_data.pkl.gz")
