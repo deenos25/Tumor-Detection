@@ -20,10 +20,8 @@ class BrainTumorDataLoader:
         images_list = []
         classes_list = []
         box_coor_list = []
-        # Using a list comprehension for a more Pythonic approach
         image_files = [f for f in os.listdir(image_dir) if f.lower().endswith(('.jpg'))]
-        label_files = [f for f in os.listdir(label_dir) if f.lower().endswith(('.txt'))]  # Assuming labels are .txt
-        # A better way to iterate is to match files by name
+        label_files = [f for f in os.listdir(label_dir) if f.lower().endswith(('.txt'))]
         for filename in image_files:
             base_filename = os.path.splitext(filename)[0]
             label_filename = base_filename + '.txt'  # Adjust extension if needed
@@ -37,15 +35,12 @@ class BrainTumorDataLoader:
                 if image is None:
                     logging.warning(f"Could not read image file: {image_path}. Skipping.")
                     continue
-                # Convert to grayscale
-                image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-                # Assuming the label file is a standard YOLO-style format
+                image_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # Convert to grayscale
                 label = pd.read_csv(label_path, sep=' ', header=None).to_numpy(dtype=object)
                 images_list.append(image_gray)
                 classes_list.append(label[:, 0])
                 box_coor_list.append(label[:, 1:])
             except Exception as e:
-                # Catching a more specific exception might be better, but this is an improvement
                 logging.error(f"Error processing file {filename} or {label_filename}: {e}")
                 continue
         return images_list, classes_list, box_coor_list
@@ -77,4 +72,4 @@ class BrainTumorDataLoader:
 
 path = kagglehub.dataset_download("ahmedsorour1/mri-for-brain-tumor-with-bounding-boxes")
 data_loader = BrainTumorDataLoader(path)
-data_loader.save_data("processed_image_data.pkl.gz")
+data_loader.save_data("C:\\Users\\deeno\\.cache\\processed_image_data.pkl.gz")
